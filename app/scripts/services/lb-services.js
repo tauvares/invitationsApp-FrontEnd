@@ -13,7 +13,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 (function(window, angular, undefined) {
   'use strict';
 
-  var urlBase = "https://invitationsapp.herokuapp.com/api";
+  var urlBase = "<YOUR_API_SERVER:PORT>";
   var authHeader = 'authorization';
 
   function getHost(url) {

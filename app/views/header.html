@@ -1,0 +1,48 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="app"><img src="images/InvitationsAppLogo.png" height=40 width=28></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: stateis('app')}"><a ui-sref="app"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li ng-class="{active: stateis('app.aboutus')}"><a ui-sref="app.aboutus"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
+                    <li ng-class="{active: stateis('app.contactus')}"><a ui-sref="app.contactus"><i class="fa fa-envelope-o"></i> Contact</a></li>
+                    <li ng-if="loggedIn" ng-class="{active: stateis('app.hosts')}"><a ui-sref="app.hosts({id: userId})"><i class="fa fa-users"></i> Manage Hosts/Guests/Events</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="!loggedIn"><a ng-click="openLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li ng-if="loggedIn" ng-class="{active: stateis('app.customers')}"><a ui-sref="app.customers({id: userId})"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{username}}</a></li>
+                    <li ng-if="loggedIn"><a ng-click="logOut()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="jumbotron"  ng-show="{{showJumbotron}}">
+
+        <!-- Main component for a primary marketing message or call to action -->
+
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-xs-12 col-sm-8">
+                    <h1>InvitationsApp</h1>
+                    <p style="padding:40px;"></p>
+                    <p>We take inspiration from the World's best practices in organizing events, and create a unique experience for our users.
+                      Try out our features and you will notice how fast is to plan a party or event!!!</p>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                <p style="padding:20px;"></p>
+                <img src="images/InvitationsAppLogo.png" class="img-responsive">
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                </div>
+            </div>
+        </div>
+    </header>

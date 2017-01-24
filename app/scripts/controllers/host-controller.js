@@ -30,6 +30,7 @@ angular.module('invitationsApp')
             id: $scope.host.id,
             name: $scope.host.name,
             email: $scope.host.email,
+            address: $scope.host.address,
             phone: $scope.host.phone,
             photo: $scope.host.photo,
             contactName: $scope.host.contactName,

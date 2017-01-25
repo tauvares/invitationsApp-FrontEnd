@@ -76,7 +76,38 @@ angular.module('invitationsApp', ['ui.router','ngResource','ngDialog', 'lbServic
                         controller  : 'GuestsController'
                    }
                 }
-            });
+            })
+            // route for the confirmation page
+            .state('app.confirmation', {
+                url: 'Guests/:id/confirmation',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/confirmation.html',
+                        controller  : 'ConfirmationController'
+                   }
+                }
+            })
+            // route for the barcode page
+            .state('app.barcode', {
+                url: 'Guests/:id/barcode',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/barcode.html',
+                        controller  : 'BarcodeController'
+                   }
+                }
+            })
+            // route for the event presence page
+            .state('app.presence', {
+                url: 'Events/:id/presence',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/presence.html',
+                        controller  : 'PresenceController'
+                   }
+                }
+            })
+            ;
         $urlRouterProvider.otherwise('/');
     })
 ;

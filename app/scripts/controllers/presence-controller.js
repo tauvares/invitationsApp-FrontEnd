@@ -1,11 +1,12 @@
 'use strict';
 angular.module('invitationsApp')
-  .controller('GuestsController', ['$scope', 'Guest', 'Event', '$stateParams', '$state', 'ngDialog',
+  .controller('PresenceController', ['$scope', 'Guest', 'Event', '$stateParams', '$state', 'ngDialog',
     function($scope, Guest, Event, $stateParams, $state, ngDialog) {
       $scope.showGuests = false;
       $scope.message = "Loading ...";
       Event.findById({
           id: $stateParams.id,
+          //filter: {include: {relation: 'host'}}
           filter: {
             include: {
               relation: 'host',
@@ -125,27 +126,30 @@ angular.module('invitationsApp')
             }
           );
       };
+
       $scope.inviteGuest = function(guest) {
         //Update Status
         $scope.guest = guest;
         $scope.guest.status = 'To Be Confirmed';
         $scope.saveGuest();
+
         var invitation = {
-          hostname : $scope.event.host.name,
-          hostemail : $scope.event.host.email,
-          guestname : $scope.guest.name,
-          guestemail : $scope.guest.email,
-          eventname : $scope.event.name,
-          eventdescription : $scope.event.description,
-          hostaddress : $scope.event.host.address,
-          hostphone : $scope.event.host.phone,
-          confirmationlink : 'https://invitationsapp.herokuapp.com/Guests/#/' + $scope.guest.id + '/confirmation',
-          eventphoto : $scope.event.photo
+          hostname:"João Tavares",
+          hostemail:"joaos@mpdft.mp.br",
+          guestname:"filho segundo",
+          guestemail:"tauvares@gmail.com",
+          eventname:"Encontro da rede CEMA de instituições",
+          eventdescription:"Encontro da rede CEMA de instituições, que ocorrerá no dia 08/02/17",
+          hostaddress:"ED SEDE DO MPDFT",
+          hostphone:"3343-9500",
+          confirmationlink:"www.uol.com.br",
+          eventphoto:"MPDFT.png"
         };
-        //and send e-mail to the guest
+        //and send e-mail for the guest
         Guest.sendEmail(invitation);
       };
 
     }
   ])
+
 ;

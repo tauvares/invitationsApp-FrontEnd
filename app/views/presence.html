@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12">
+         <ul class="breadcrumb">
+             <li><a  ui-sref="app">Home</a></li>
+             <li class="active">Confirmation Page</li>
+         </ul>
+      </div>
+      <div class="col-xs-12">
+         <h3>Confirmation Page</h3>
+         <hr>
+      </div>
+  </div>
+  <div class="row row-content">
+      <div class="col-xs-12 col-sm-9">
+          <form class="form-horizontal" name="confirmationForm" ng-submit="submitConfirmation()" novalidate>
+            <div class="form-group">
+                <label for="hostname" class="col-sm-2 control-label">Host Name: {{hostname}}</label>
+            </div>
+            <div class="form-group">
+                <label for="eventname" class="col-sm-2 control-label">Event: {{eventname}}</label>
+            </div>
+            <div class="form-group">
+                <label for="address" class="col-sm-2 control-label">Description: {{eventdescription}}</label>
+            </div>
+            <div class="form-group">
+                <label for="contactName" class="col-sm-2 control-label">Irá levar acompanhante/Would you like to bring another person?</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="contactName" name="contactName" placeholder="Enter Contact Name" ng-model="host.contactName">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-danger">Imprimir/Print Confirmation</button>
+                </div>
+            </div>
+          </form>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+
+      </div>
+  </div>
+</div>

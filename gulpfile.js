@@ -82,3 +82,12 @@ gulp.task('browser-sync', ['default'], function () {
 gulp.task('default', ['clean'], function() {
     gulp.start('usemin', 'imagemin','copyfonts');
 });
+
+gulp.task('cleanapi', function() {
+    return del(['../invitationsApp-API/client'],{force:true});
+});
+
+gulp.task('copyapi', ['cleanapi'], function() {
+  return gulp.src('dist/**')
+      .pipe(gulp.dest('../invitationsApp-API/client'));
+});

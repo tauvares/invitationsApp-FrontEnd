@@ -1,5 +1,5 @@
 'use strict';
-angular.module('invitationsApp', ['ui.router','ngResource','ngDialog', 'lbServices'])
+angular.module('invitationsApp', ['ui.router','ngResource', 'ngDialog', 'lbServices', 'angular-barcode'])
 .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
             // route for the home page
@@ -92,7 +92,7 @@ angular.module('invitationsApp', ['ui.router','ngResource','ngDialog', 'lbServic
                 url: 'Guests/:id/barcode',
                 views: {
                     'content@': {
-                        templateUrl : 'views/barcode.html',
+                        templateUrl : 'views/invitation.html',
                         controller  : 'BarcodeController'
                    }
                 }

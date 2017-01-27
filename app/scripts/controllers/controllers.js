@@ -93,7 +93,7 @@ angular.module('invitationsApp')
   $scope.sendFeedback = function() {
 
 
-    if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
+    if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
       $scope.invalidChannelSelection = true;
     } else {
       $scope.invalidChannelSelection = false;

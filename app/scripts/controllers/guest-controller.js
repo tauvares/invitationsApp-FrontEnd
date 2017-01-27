@@ -46,10 +46,11 @@ angular.module('invitationsApp')
       $scope.editGuest = function(guest) {
         $scope.guest = guest;
       };
-      $scope.saveGuest = function() {
+      $scope.saveGuest = function(warning) {
+        //the warning variable is used to know if the host is inviting only one guest or the entire list
         if (!$scope.guest.eventId) {
           $scope.guest.eventId = $stateParams.id;
-        }
+        };
         Guest.prototype$updateAttributes({
             eventId: $scope.guest.eventId,
             id: $scope.guest.id,
@@ -62,31 +63,35 @@ angular.module('invitationsApp')
           })
           .$promise.then(
             function(response) {
-              var message = '\
-              <div class="ngdialog-message">\
-                <div><h3>Guest Saved Successfully</h3></div>' +
-                '<div class="ngdialog-buttons">\
-                    <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
-              ngDialog.openConfirm({
-                template: message,
-                plain: 'true'
-              });
-              $state.reload();
+              if (warning) {
+                var message = '\
+                <div class="ngdialog-message">\
+                  <div><h3>Guest Saved Successfully</h3></div>' +
+                  '<div class="ngdialog-buttons">\
+                      <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
+                  </div>';
+                ngDialog.openConfirm({
+                  template: message,
+                  plain: 'true'
+                });
+                $state.reload();
+              };
             },
             function(response) {
-              var message = '\
-              <div class="ngdialog-message">\
-                <div><h3>Guest not saved!</h3></div>' +
-                '<div><p>' + response.data.error.message + '</p><p>' +
-                response.data.error.name + '</p></div>' +
-                '<div class="ngdialog-buttons">\
-                    <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
-              ngDialog.openConfirm({
-                template: message,
-                plain: 'true'
-              });
+              if (warning) {
+                var message = '\
+                <div class="ngdialog-message">\
+                  <div><h3>Guest not saved!</h3></div>' +
+                  '<div><p>' + response.data.error.message + '</p><p>' +
+                  response.data.error.name + '</p></div>' +
+                  '<div class="ngdialog-buttons">\
+                      <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
+                  </div>';
+                ngDialog.openConfirm({
+                  template: message,
+                  plain: 'true'
+                });
+              };
             }
           );
       };
@@ -102,7 +107,7 @@ angular.module('invitationsApp')
                 <div><h3>Guest Deleted Successfully</h3></div>' +
                 '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
               ngDialog.openConfirm({
                 template: message,
                 plain: 'true'
@@ -117,7 +122,7 @@ angular.module('invitationsApp')
                 response.data.error.name + '</p></div>' +
                 '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
               ngDialog.openConfirm({
                 template: message,
                 plain: 'true'
@@ -125,11 +130,11 @@ angular.module('invitationsApp')
             }
           );
       };
-      $scope.inviteGuest = function(guest) {
+      $scope.inviteGuest = function(guest, warning) {
         //Update Status
         $scope.guest = guest;
         $scope.guest.status = 'To Be Confirmed';
-        $scope.saveGuest();
+        $scope.saveGuest(warning);
         var invitation = {
           hostname : $scope.event.host.name,
           hostemail : $scope.event.host.email,
@@ -139,11 +144,20 @@ angular.module('invitationsApp')
           eventdescription : $scope.event.description,
           hostaddress : $scope.event.host.address,
           hostphone : $scope.event.host.phone,
-          confirmationlink : 'https://invitationsapp.herokuapp.com/Guests/#/' + $scope.guest.id + '/confirmation',
+          confirmationlink : 'https://invitationsapp.herokuapp.com/#!/Guests/' + $scope.guest.id + '/confirmation',
           eventphoto : $scope.event.photo
         };
         //and send e-mail to the guest
         Guest.sendEmail(invitation);
+      };
+
+      $scope.inviteAllGuests = function() {
+        //Send email to the entire guest list
+        $scope.guests.forEach(function(data)
+        {
+          //console.log('Sending email to: ' + data.name + ' - email: ' + data.email);
+          $scope.inviteGuest(data, false);
+        });
       };
 
     }

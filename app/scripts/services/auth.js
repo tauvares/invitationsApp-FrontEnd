@@ -21,7 +21,7 @@ angular.module('invitationsApp')
               response.data.error.name + '</p></div>' +
               '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
             ngDialog.openConfirm({
               template: message,
               plain: 'true'
@@ -113,5 +113,5 @@ angular.module('invitationsApp')
     getObject: function(key, defaultValue) {
       return JSON.parse($window.localStorage[key] || defaultValue);
     }
-  }
+  };
 }]);

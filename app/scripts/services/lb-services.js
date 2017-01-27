@@ -13,7 +13,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 (function(window, angular, undefined) {
   'use strict';
 
-  var urlBase = "https://invitationsapp.herokuapp.com/api";
+  var urlBase = "/api";
   var authHeader = 'authorization';
 
   function getHost(url) {
@@ -683,7 +683,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               params: {
                 id: function() {
                   var id = LoopBackAuth.currentUserId;
-                  if (id == null) id = '__anonymous__';
+                  if (id === null) id = '__anonymous__';
                   return id;
                 },
               },

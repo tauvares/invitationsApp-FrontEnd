@@ -68,7 +68,7 @@ angular.module('invitationsApp')
                 <div><h3>Guest Saved Successfully</h3></div>' +
                 '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
               ngDialog.openConfirm({
                 template: message,
                 plain: 'true'
@@ -83,7 +83,7 @@ angular.module('invitationsApp')
                 response.data.error.name + '</p></div>' +
                 '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
               ngDialog.openConfirm({
                 template: message,
                 plain: 'true'
@@ -103,7 +103,7 @@ angular.module('invitationsApp')
                 <div><h3>Guest Deleted Successfully</h3></div>' +
                 '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
               ngDialog.openConfirm({
                 template: message,
                 plain: 'true'
@@ -118,7 +118,7 @@ angular.module('invitationsApp')
                 response.data.error.name + '</p></div>' +
                 '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
               ngDialog.openConfirm({
                 template: message,
                 plain: 'true'

@@ -142,7 +142,7 @@ angular.module('invitationsApp')
           guestemail : $scope.guest.email,
           eventname : $scope.event.name,
           eventdescription : $scope.event.description,
-          hostaddress : $scope.event.host.address,
+          hostaddress : $scope.event.address,
           hostphone : $scope.event.host.phone,
           confirmationlink : 'https://invitationsapp.herokuapp.com/#!/Guests/' + $scope.guest.id + '/confirmation',
           eventphoto : $scope.event.photo

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('invitationsApp', ['ui.router','ngResource', 'ngDialog', 'lbServices', 'angular-barcode'])
+angular.module('invitationsApp', ['ui.router','ngResource', 'ngDialog', 'lbServices', 'angular-barcode', 'froala'])
 .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
             // route for the home page

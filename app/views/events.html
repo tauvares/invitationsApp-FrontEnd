@@ -18,6 +18,7 @@
                     <table class="table table-striped table-bordered">
                         <tr>
                             <th class="thead-inverse">Name</th>
+                            <th class="thead-inverse">Address</th>
                             <th class="thead-inverse">Start Date</th>
                             <th class="thead-inverse">End Date</th>
                             <th class="thead-inverse">Confirmation Deadline Date</th>
@@ -26,6 +27,7 @@
                         </tr>
                         <tr ng-repeat="even in events">
                             <td>{{even.name}}</td>
+                            <td>{{even.address}}</td>
                             <td>{{even.startDate}}</td>
                             <td>{{even.endDate}}</td>
                             <td>{{even.confirmationDeadlineDate}}</td>
@@ -57,16 +59,26 @@
                     <span ng-show="eventForm.name.$error.required && !eventForm.name.$pristine" class="help-block">Event name is required.</span>
                 </div>
             </div>
+            <div class="form-group" ng-class="{ 'has-error' : eventForm.address.$error.required && !eventForm.address.$pristine }">
+                <label for="address" class="col-sm-2 control-label">Event Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter Event Address" ng-model="event.address" required>
+                    <span ng-show="eventForm.address.$error.required && !eventForm.address.$pristine" class="help-block">Event address is required.</span>
+                </div>
+            </div>
             <div class="form-group" ng-class="{ 'has-error' : eventForm.description.$invalid && !eventForm.description.$pristine }">
               <label for="description" class="col-sm-2 control-label">Event Description</label>
               <div class="col-sm-10">
-                  <textarea class="form-control" rows="12" ng-model="event.description" placeholder="Enter Event Description" required></textarea>
+
+                  <textarea froala class="form-control" rows="12" ng-model="event.description" placeholder="Enter Event Description" required></textarea>
+
                   <span ng-show="eventForm.description.$invalid && !eventForm.description.$pristine" class="glyphicon glyphicon-remove form-control-event" aria-hidden="true"></span>
                   <span ng-show="(eventForm.description.$invalid || eventForm.description.$error.required) && !eventForm.description.$pristine" class="help-block">
                       Enter a description.
                   </span>
               </div>
             </div>
+
             <div class="form-group" ng-class="{ 'has-error' : eventForm.startDate.$invalid && !eventForm.startDate.$pristine }">
                 <label for="startDate" class="col-sm-2 control-label">Start Date</label>
                 <div class="col-sm-2">

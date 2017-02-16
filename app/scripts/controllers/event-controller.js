@@ -4,6 +4,7 @@ angular.module('invitationsApp')
     function($scope, Event, Host, $stateParams, $state, ngDialog) {
       $scope.showEvents = false;
       $scope.message = "Loading ...";
+      
       Host.findById({
           id: $stateParams.id,
           filter: {include: {relation: 'customer'}}
@@ -41,6 +42,7 @@ angular.module('invitationsApp')
               hostId: $scope.event.hostId,
               id: $scope.event.id,
               name: $scope.event.name,
+              address: $scope.event.address,
               startDate: $scope.event.startDate,
               endDate: $scope.event.endDate,
               confirmationDeadlineDate: $scope.event.confirmationDeadlineDate,

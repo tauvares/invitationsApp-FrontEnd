@@ -3,35 +3,45 @@
       <div class="col-xs-12">
          <ul class="breadcrumb">
              <li><a  ui-sref="app">Home</a></li>
-             <li class="active">Confirmation Page</li>
+             <li class="active">Presence List Page</li>
          </ul>
       </div>
       <div class="col-xs-12">
-         <h3>Confirmation Page</h3>
+         <h3>Presence List Page</h3>
          <hr>
       </div>
   </div>
+  <div class="row">
+      <div class="col-xs-12">
+         <ul class="breadcrumb">
+             <li><a  ui-sref="app">Home</a></li>
+             <li><a  ui-sref="app.hosts({id: event.host.customerId})">{{event.host.customer.username}}'s hosts</a></li>
+             <li><a  ui-sref="app.events({id: event.hostId})">{{event.host.name}}'s events</a></li>
+             <li class="active">{{event.name}}'s guests</li>
+         </ul>
+      </div>
+      <div class="col-xs-12">
+         <h3>Guests List from event - {{event.name}}</h3>
+         <hr>
+      </div>
+  </div>
+
   <div class="row row-content">
+      <div class="col-xs-12">
+          <h3>Guests ID Confirmation</h3>
+      </div>
       <div class="col-xs-12 col-sm-9">
-          <form class="form-horizontal" name="confirmationForm" ng-submit="submitConfirmation()" novalidate>
-            <div class="form-group">
-                <label for="hostname" class="col-sm-2 control-label">Host Name: {{hostname}}</label>
-            </div>
-            <div class="form-group">
-                <label for="eventname" class="col-sm-2 control-label">Event: {{eventname}}</label>
-            </div>
-            <div class="form-group">
-                <label for="address" class="col-sm-2 control-label">Description: {{eventdescription}}</label>
-            </div>
-            <div class="form-group">
-                <label for="contactName" class="col-sm-2 control-label">Irá levar acompanhante/Would you like to bring another person?</label>
+          <form class="form-horizontal" name="guestForm" ng-submit="confirmGuestPresence(guest.id)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : guestForm.id.$error.required && !guestForm.id.$pristine }">
+                <label for="id" class="col-sm-2 control-label">Guest ID</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="contactName" name="contactName" placeholder="Enter Contact Name" ng-model="host.contactName">
+                    <input type="text" class="form-control" id="id" name="id" placeholder="Enter Guest ID" ng-model="guest.id" required>
+                    <span ng-show="guestForm.id.$error.required && !guestForm.id.$pristine" class="help-block">Guest ID is required.</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-danger">Imprimir/Print Confirmation</button>
+                    <button type="submit" class="btn btn-danger" ng-disabled="guestForm.$invalid">Confirm Presence</button>
                 </div>
             </div>
           </form>
@@ -40,4 +50,33 @@
 
       </div>
   </div>
+
+  <div class="row row-content">
+      <div class="col-xs-12" ng-if="showGuests">
+            <h2>Guests</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th class="thead-inverse">ID</th>
+                        <th class="thead-inverse">Name</th>
+                        <th class="thead-inverse">Email</th>
+                        <th class="thead-inverse">Phone</th>
+                        <th class="thead-inverse">Photo</th>
+                        <th class="thead-inverse">Status</th>
+                        <th class="thead-inverse">Invitations Confirmed</th>
+                    </tr>
+                    <tr ng-repeat="gues in guests">
+                        <td>{{gues.id}}</td>
+                        <td>{{gues.name}}</td>
+                        <td>{{gues.email}}</td>
+                        <td>{{gues.phone}}</td>
+                        <td>{{gues.photo}}</td>
+                        <td>{{gues.status}}</td>
+                        <td>{{gues.invitationsConfirmed}}</td>
+                    </tr>
+                </table>
+            </div>
+      </div>
+  </div>
+
 </div>

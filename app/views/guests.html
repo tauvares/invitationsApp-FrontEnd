@@ -19,7 +19,8 @@
               <button class="btn btn-danger" ng-click="inviteAllGuests()">
                 <span class="glyphicon glyphicon-envelope" aria-hidden="true">
                 </span> Send Invitations to All Guests
-            </button>
+              </button>
+              <a ui-sref="app.presence({id: event.id})" class="button btn btn-danger"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Presence List</a>
             </h2>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">

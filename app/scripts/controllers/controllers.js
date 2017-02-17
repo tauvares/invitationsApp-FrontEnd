@@ -5,6 +5,7 @@ angular.module('invitationsApp')
       $scope.loggedIn = false;
       $scope.username = '';
       $scope.userId = '';
+      $scope.showJumbotron = true;
       if (AuthService.isAuthenticated()) {
         $scope.loggedIn = true;
         $scope.username = AuthService.getUsername();
@@ -24,6 +25,29 @@ angular.module('invitationsApp')
         $scope.username = '';
         $scope.userId = '';
         $location.path('/');
+        $scope.showJumbotron = true;
+      };
+      $scope.openHome = function() {
+        $scope.showJumbotron = true;
+        $state.go('app');
+      };
+      $scope.openAboutus = function() {
+        $scope.showJumbotron = true;
+        $state.go('app.aboutus');
+      };
+      $scope.openContactus = function() {
+        $scope.showJumbotron = true;
+        $state.go('app.contactus');
+      };
+      $scope.openCustomers = function(userId) {
+        $scope.showJumbotron = false;
+        console.log(userId);
+        $state.go('app.customers', {id: userId.userId});
+      };
+      $scope.openHosts = function(userId) {
+        $scope.showJumbotron = false;
+        console.log(userId);
+        $state.go('app.hosts', {id: userId.userId});
       };
       $rootScope.$on('login:Successful', function() {
         $scope.loggedIn = AuthService.isAuthenticated();

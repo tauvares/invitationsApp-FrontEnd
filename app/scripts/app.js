@@ -15,6 +15,7 @@ angular.module('invitationsApp', ['ui.router','ngResource', 'ngDialog', 'lbServi
                     },
                     'footer': {
                         templateUrl : 'views/footer.html',
+                        controller  : 'HeaderController'
                     }
                 }
             })

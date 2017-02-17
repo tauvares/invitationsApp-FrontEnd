@@ -7,25 +7,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ui-sref="app"><img src="images/InvitationsAppLogo.png" height=40 width=28></a>
+                <a class="navbar-brand" ng-click="openHome()"><img src="images/InvitationsAppLogo.png" height=40 width=28></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li ng-class="{active: stateis('app')}"><a ui-sref="app"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-                    <li ng-class="{active: stateis('app.aboutus')}"><a ui-sref="app.aboutus"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
-                    <li ng-class="{active: stateis('app.contactus')}"><a ui-sref="app.contactus"><i class="fa fa-envelope-o"></i> Contact</a></li>
-                    <li ng-if="loggedIn" ng-class="{active: stateis('app.hosts')}"><a ui-sref="app.hosts({id: userId})"><i class="fa fa-users"></i> Manage Hosts/Guests/Events</a></li>
+                    <li ng-class="{active: stateis('app')}"><a ng-click="openHome()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li ng-class="{active: stateis('app.aboutus')}"><a ng-click="openAboutus()"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
+                    <li ng-class="{active: stateis('app.contactus')}"><a ng-click="openContactus()"><i class="fa fa-envelope-o"></i> Contact</a></li>
+                    <li ng-if="loggedIn" ng-class="{active: stateis('app.hosts')}"><a ng-click="openHosts({userId})"><i class="fa fa-users"></i> Manage Hosts/Guests/Events</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-if="!loggedIn"><a ng-click="openLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li ng-if="loggedIn" ng-class="{active: stateis('app.customers')}"><a ui-sref="app.customers({id: userId})"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{username}}</a></li>
+                    <li ng-if="loggedIn" ng-class="{active: stateis('app.customers')}"><a ng-click="openCustomers({userId})"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> {{username}}</a></li>
                     <li ng-if="loggedIn"><a ng-click="logOut()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="jumbotron"  ng-show="{{showJumbotron}}">
+    <header class="jumbotron"  ng-show="showJumbotron">
 
         <!-- Main component for a primary marketing message or call to action -->
 

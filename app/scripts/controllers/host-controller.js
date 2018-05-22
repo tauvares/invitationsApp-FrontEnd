@@ -1,7 +1,7 @@
 'use strict';
 angular.module('invitationsApp')
-  .controller('HostsController', ['$scope', 'Host', 'Customer', '$stateParams', '$state', 'ngDialog',
-    function($scope, Host, Customer, $stateParams, $state, ngDialog) {
+  .controller('HostsController', ['$scope', 'Host', 'Customer', '$stateParams', '$state', 'ngDialog','$location', '$anchorScroll',
+    function($scope, Host, Customer, $stateParams, $state, ngDialog, $location, $anchorScroll) {
       $scope.showHosts = false;
       $scope.message = "Loading ...";
       Host.find({
@@ -20,6 +20,9 @@ angular.module('invitationsApp')
           });
       $scope.editHost = function(host) {
         $scope.host = host;
+        $location.hash('cadastro');
+        // call $anchorScroll()
+        $anchorScroll();
       };
       $scope.saveHost = function() {
         if (!$scope.host.customerId) {

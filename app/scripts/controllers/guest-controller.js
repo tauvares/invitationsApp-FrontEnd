@@ -1,7 +1,7 @@
 'use strict';
 angular.module('invitationsApp')
-  .controller('GuestsController', ['$scope', 'Guest', 'Event', '$stateParams', '$state', 'ngDialog',
-    function($scope, Guest, Event, $stateParams, $state, ngDialog) {
+  .controller('GuestsController', ['$scope', 'Guest', 'Event', '$stateParams', '$state', 'ngDialog','$location', '$anchorScroll',
+    function($scope, Guest, Event, $stateParams, $state, ngDialog, $location, $anchorScroll) {
       $scope.showGuests = false;
       $scope.message = "Loading ...";
       Event.findById({
@@ -45,6 +45,9 @@ angular.module('invitationsApp')
           });
       $scope.editGuest = function(guest) {
         $scope.guest = guest;
+        $location.hash('cadastro');
+        // call $anchorScroll()
+        $anchorScroll();
       };
       $scope.saveGuest = function(warning) {
         //the warning variable is used to know if the host is inviting only one guest or the entire list

@@ -1,7 +1,7 @@
 'use strict';
 angular.module('invitationsApp')
-  .controller('EventsController', ['$scope', 'Event', 'Host', '$stateParams', '$state', 'ngDialog',
-    function($scope, Event, Host, $stateParams, $state, ngDialog) {
+  .controller('EventsController', ['$scope', 'Event', 'Host', '$stateParams', '$state', 'ngDialog', '$location', '$anchorScroll',
+    function($scope, Event, Host, $stateParams, $state, ngDialog, $location, $anchorScroll) {
       $scope.showEvents = false;
       $scope.message = "Loading ...";
       
@@ -33,6 +33,9 @@ angular.module('invitationsApp')
           });
       $scope.editEvent = function(event){
         $scope.event = event;
+        $location.hash('cadastro');
+        // call $anchorScroll()
+        $anchorScroll();
       };
       $scope.saveEvent = function() {
         if (!$scope.event.hostId) {
